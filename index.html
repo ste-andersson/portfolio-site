@@ -657,7 +657,14 @@ function playTrainer(t) {
 const trainerAudio = document.getElementById('trainer-audio');
 if (trainerAudio) trainerAudio.addEventListener('ended', stopAudio);
 
-// Contact form
+// Open modal from URL hash
+const validModals = ['voicelog','pingpong','tekont','ring','contact'];
+if (window.location.hash) {
+  const hash = window.location.hash.slice(1);
+  if (validModals.includes(hash)) openModal(hash);
+}
+
+
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', async function(e) {
