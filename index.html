@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Stefan Andersson — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0f0e0d;--ink2:#3a3836;--ink3:#7a7772;
+  --paper:#faf8f4;--paper2:#f0ede7;
+  --accent:#c84b1f;--border:rgba(15,14,13,0.12);
+}
+body{background:var(--paper);color:var(--ink);font-family:'Syne',sans-serif;overflow-x:hidden}
+
+/* NAV */
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;border-bottom:1px solid var(--border);background:var(--paper);position:sticky;top:0;z-index:50}
+.nav-name{font-family:'DM Serif Display',serif;font-size:1.2rem;letter-spacing:-0.01em}
+.nav-links{display:flex;gap:2rem;align-items:center}
+.nav-links a{font-size:0.8rem;font-weight:600;color:var(--ink2);text-decoration:none;letter-spacing:0.05em;text-transform:uppercase}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--ink);color:var(--paper)!important;padding:0.45rem 1.1rem;border-radius:2px;transition:background 0.15s}
+.nav-cta:hover{background:var(--accent)!important}
+
+/* HERO */
+.hero{padding:6rem 3rem 5rem;max-width:1100px;margin:0 auto}
+.hero-tag{font-size:0.7rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:1.75rem;display:flex;align-items:center;gap:0.6rem}
+.hero-tag::before{content:'';display:block;width:2.5rem;height:1px;background:var(--accent)}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(3.5rem,7vw,6.5rem);line-height:0.92;letter-spacing:-0.03em;margin-bottom:2.5rem}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1.05rem;color:var(--ink2);max-width:42ch;line-height:1.75;font-weight:400}
+
+/* SECTION LABEL */
+.section-header{max-width:1100px;margin:0 auto;padding:0 3rem 2rem;display:flex;align-items:center;gap:1.5rem}
+.section-header h2{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);white-space:nowrap}
+.section-header::after{content:'';flex:1;height:1px;background:var(--border)}
+
+/* PROJECT GRID */
+.projects{max-width:1100px;margin:0 auto;padding:0 3rem 7rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+
+/* CARD */
+.card{cursor:pointer;display:flex;flex-direction:column;border:1px solid var(--border);background:var(--paper);transition:transform 0.2s,box-shadow 0.2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(15,14,13,0.1)}
+
+.card-media{position:relative;width:100%;overflow:hidden;background:#111}
+
+/* phone mockup */
+.phone-wrap{
+  background:#1a1a1a;
+  padding:1.5rem 1rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.phone-frame{
+  width:180px;
+  border-radius:28px;
+  border:3px solid #333;
+  overflow:hidden;
+  box-shadow:0 0 0 1px #444,0 20px 40px rgba(0,0,0,0.6);
+  background:#000;
+}
+.phone-frame video{
+  width:100%;
+  display:block;
+}
+
+/* plain video — full width, natural height */
+.card-video{width:100%;height:auto;display:block}
+
+/* youtube thumb */
+.yt-thumb{width:100%;height:280px;object-fit:cover;display:block;position:relative}
+.yt-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.25)}
+.yt-play{width:60px;height:60px;background:rgba(200,75,31,0.9);border-radius:50%;display:flex;align-items:center;justify-content:center}
+.yt-play::after{content:'';border-left:20px solid #fff;border-top:12px solid transparent;border-bottom:12px solid transparent;margin-left:4px}
+
+/* CARD BODY */
+.card-body{padding:1.75rem 2rem 2rem;display:flex;flex-direction:column;flex:1}
+.card-num{font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--ink3);letter-spacing:0.08em;margin-bottom:0.6rem}
+.card-tag{display:inline-block;font-size:0.6rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:0.18rem 0.45rem;border-radius:1px;margin-bottom:1rem}
+.card h3{font-family:'DM Serif Display',serif;font-size:1.75rem;line-height:1.05;letter-spacing:-0.02em;margin-bottom:0.6rem}
+.card-hook{font-size:0.85rem;font-weight:600;color:var(--accent);margin-bottom:0.6rem;line-height:1.4}
+.card-desc{font-size:0.825rem;color:var(--ink2);line-height:1.7;flex:1}
+.card-footer{margin-top:1.5rem;display:flex;align-items:center;justify-content:space-between}
+.card-cta{font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink);display:inline-flex;align-items:center;gap:0.4rem}
+.card-cta::after{content:'→';transition:transform 0.2s}
+.card:hover .card-cta::after{transform:translateX(4px)}
+
+/* coming-soon badge */
+.badge-soon{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink3);border:1px dashed var(--border);padding:0.2rem 0.5rem}
+
+/* MODAL */
+.modal-backdrop{display:none;position:fixed;inset:0;background:rgba(15,14,13,0.78);z-index:9999;align-items:center;justify-content:center;padding:2rem}
+.modal-backdrop.open{display:flex}
+.modal{background:var(--paper);max-width:720px;width:100%;max-height:90vh;overflow-y:auto;border:1px solid var(--border);position:relative;animation:modalIn 0.22s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.modal-close{position:sticky;top:1rem;float:right;margin:1rem 1rem 0 0;background:var(--paper2);border:1px solid var(--border);cursor:pointer;font-size:1rem;color:var(--ink2);width:32px;height:32px;display:flex;align-items:center;justify-content:center;z-index:10;border-radius:2px}
+.modal-close:hover{background:var(--ink);color:var(--paper)}
+.modal-inner{padding:1.5rem 2.5rem 2.5rem;clear:both}
+.modal-tag{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.6rem}
+.modal-title{font-family:'DM Serif Display',serif;font-size:2.25rem;line-height:1;letter-spacing:-0.03em;margin-bottom:1.5rem}
+.modal-media{width:100%;border:1px solid var(--border);margin-bottom:1.5rem;overflow:hidden;background:#000}
+.modal-media img{width:100%;height:260px;object-fit:cover;object-position:top;display:block}
+.modal-media iframe{width:100%;height:320px;display:block;border:none}
+.modal-hook{font-size:0.95rem;font-weight:600;color:var(--accent);margin-bottom:0.6rem}
+.modal-desc{font-size:0.875rem;color:var(--ink2);line-height:1.75;margin-bottom:1.5rem}
+.modal-section{margin-bottom:1.5rem}
+.modal-section-label{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--ink3);margin-bottom:0.75rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border)}
+.modal-role-list{display:flex;flex-direction:column;gap:0.5rem}
+.modal-role-item{font-size:0.85rem;color:var(--ink2);line-height:1.6;padding-left:1rem;position:relative}
+.modal-role-item::before{content:'—';position:absolute;left:0;color:var(--accent);font-family:'DM Mono',monospace}
+.modal-stack{display:flex;flex-wrap:wrap;gap:0.4rem}
+.modal-stack span{font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--ink2);background:var(--paper2);border:1px solid var(--border);padding:0.18rem 0.45rem}
+.modal-links{display:flex;gap:1rem;margin-top:1.5rem;flex-wrap:wrap}
+.modal-link{font-size:0.75rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--ink);text-decoration:none;border:1px solid var(--ink);padding:0.55rem 1.1rem;transition:all 0.15s;display:inline-block}
+.modal-link:hover{background:var(--ink);color:var(--paper)}
+.modal-link.primary{background:var(--ink);color:var(--paper)}
+.modal-link.primary:hover{background:var(--accent);border-color:var(--accent)}
+
+/* trainer audio */
+.trainer-select{display:flex;gap:1rem;margin-bottom:1rem}
+.trainer-btn{display:flex;flex-direction:column;align-items:center;gap:0.4rem;background:var(--paper2);border:2px solid transparent;padding:0.75rem 1rem;cursor:pointer;transition:border-color 0.15s;font-family:'Syne',sans-serif}
+.trainer-btn.active{border-color:var(--accent)}
+.trainer-btn img{width:60px;height:80px;object-fit:cover;object-position:top}
+.trainer-btn span{font-size:0.7rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink)}
+.audio-controls{display:flex;align-items:center;gap:1rem;margin-top:0.75rem}
+.play-btn{width:38px;height:38px;background:var(--ink);color:var(--paper);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:0.9rem;transition:background 0.15s}
+.play-btn:hover{background:var(--accent)}
+.audio-label{font-size:0.8rem;color:var(--ink2)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem 3rem;max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
+footer p{font-size:0.78rem;color:var(--ink3)}
+footer a{color:var(--ink2);text-decoration:none;font-weight:600}
+footer a:hover{color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-name">Stefan Andersson</div>
+  <div class="nav-links">
+    <a href="#">Work</a>
+    <a href="mailto:stefan.andersson@sveki.se" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-tag">Full-stack developer · Stockholm</div>
+  <h1>I find <em>problems</em><br>and I build<br><em>solutions.</em></h1>
+  <p class="hero-sub">Java / Spring Boot on the back, React / TypeScript on the front. SALT bootcamp graduate. Background in AI development, facilitation, and shipping things that stick.</p>
+</section>
+
+<div class="section-header"><h2>Selected work</h2></div>
+
+<div class="projects">
+
+  <!-- CARD 1: VoiceLog -->
+  <div class="card" onclick="openModal('voicelog')">
+    <div class="card-media">
+      <video autoplay loop muted playsinline class="card-video">
+        <source src="https://pub-727799f31ba14b49bdda677fcfc7b316.r2.dev/voicelog-mini.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="card-body">
+      <div class="card-num">01</div>
+      <div class="card-tag">AI · Client work</div>
+      <h3>VoiceLog</h3>
+      <p class="card-hook">The client paid for it. That says everything.</p>
+      <p class="card-desc">An AI voice assistant for electricians — call the bot, talk about the job, reports fill themselves. Built the full MVP after spending a day in the field shadowing an electrician at Selatek.</p>
+      <div class="card-footer">
+        <span class="card-cta">View project</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 2: Office Ping-Pong -->
+  <div class="card" onclick="openModal('pingpong')">
+    <div class="card-media">
+      <div class="phone-wrap">
+        <div class="phone-frame">
+          <video autoplay loop muted playsinline style="width:100%;display:block">
+            <source src="https://pub-727799f31ba14b49bdda677fcfc7b316.r2.dev/app2.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="card-num">02</div>
+      <div class="card-tag">Full-stack · Deployed</div>
+      <h3>Office Ping-Pong</h3>
+      <p class="card-hook">200+ matches. 13 players. Nobody was asked to use it.</p>
+      <p class="card-desc">A full office ping-pong league with AI-generated character portraits for every player. TypeScript frontend, Spring Boot backend, PostgreSQL — deployed and organically adopted.</p>
+      <div class="card-footer">
+        <span class="card-cta">View project</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 3: Tekont -->
+  <div class="card" onclick="openModal('tekont')">
+    <div class="card-media">
+      <video autoplay loop muted playsinline class="card-video">
+        <source src="https://pub-727799f31ba14b49bdda677fcfc7b316.r2.dev/comparison-mini.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="card-body">
+      <div class="card-num">03</div>
+      <div class="card-tag">Full-stack · PWA · In use</div>
+      <h3>Tekont</h3>
+      <p class="card-hook">Real integration. Real companies. Real receipts.</p>
+      <p class="card-desc">Photo a receipt, it books itself into Bokio. Direct API integration with an existing accounting system — not a workaround. Used by real companies today.</p>
+      <div class="card-footer">
+        <span class="card-cta">View project</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CARD 4: Ring så tränar vi -->
+  <div class="card" onclick="openModal('ring')">
+    <div class="card-media">
+      <video autoplay loop muted playsinline class="card-video">
+        <source src="https://pub-727799f31ba14b49bdda677fcfc7b316.r2.dev/shoulder_raises4.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="card-body">
+      <div class="card-num">04</div>
+      <div class="card-tag">Agentic AI · Product owner</div>
+      <h3>Ring så tränar vi</h3>
+      <p class="card-hook">I own the product. A team of five builds it.</p>
+      <p class="card-desc">Call an AI trainer, talk about your goals, get a real workout on the spot. Agentic flows with tool use under the hood. I'm product owner and UI/UX lead.</p>
+      <div class="card-footer">
+        <span class="card-cta">View project</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL: VoiceLog -->
+<div class="modal-backdrop" id="modal-voicelog">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('voicelog')">✕</button>
+    <div class="modal-inner">
+      <div class="modal-tag">AI · Client work · Proof of concept</div>
+      <h2 class="modal-title">VoiceLog</h2>
+      <div class="modal-media">
+        <iframe src="https://www.youtube.com/embed/d6svYSOnUtU?rel=0&modestbranding=1" allow="accelerometer;autoplay;clipboard-write;encrypted-media;gyroscope;picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <p class="modal-hook">The client paid for it. That says everything.</p>
+      <p class="modal-desc">Electricians lose hours filling in reports after a long day. I identified this problem on day one at GNR8, spent a full day in the field shadowing an electrician, then built an AI voice assistant: call the bot, talk about the job, and it fills in time and activity reports automatically. The client — Selatek — paid for the MVP and took it forward with the senior dev team.</p>
+      <div class="modal-section">
+        <div class="modal-section-label">My role</div>
+        <div class="modal-role-list">
+          <div class="modal-role-item">Identified the problem independently on day one</div>
+          <div class="modal-role-item">Spent a full day in the field shadowing an electrician</div>
+          <div class="modal-role-item">Built a full-stack MVP in days, functional enough to demo to the client</div>
+          <div class="modal-role-item">Produced a trailer video with Selatek for internal sign-off</div>
+          <div class="modal-role-item">Handed over to the senior development team for production</div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Tech stack</div>
+        <div class="modal-stack"><span>ElevenLabs</span><span>OpenAI</span><span>Spring Boot</span><span>React</span><span>TypeScript</span><span>PostgreSQL</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Office Ping-Pong -->
+<div class="modal-backdrop" id="modal-pingpong">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('pingpong')">✕</button>
+    <div class="modal-inner">
+      <div class="modal-tag">Full-stack · Deployed · TypeScript · Spring Boot</div>
+      <h2 class="modal-title">Office Ping-Pong</h2>
+      <div class="modal-media">
+        <img src="office-ping-pong/leaderboard.png" alt="Leaderboard screenshot">
+      </div>
+      <p class="modal-hook">200+ matches. 13 players. Nobody was asked to use it.</p>
+      <p class="modal-desc">A full office ping-pong league for my SALT cohort. Every player gets an AI-generated character portrait. Matches, leaderboard, and stats — all live on Railway. The real measure: colleagues started using it on their own and kept coming back.</p>
+      <div class="modal-section">
+        <div class="modal-section-label">My role</div>
+        <div class="modal-role-list">
+          <div class="modal-role-item">Designed and built the full stack solo — TypeScript/Vite frontend, Java/Spring Boot backend, PostgreSQL</div>
+          <div class="modal-role-item">Integrated AI image generation to create unique character portraits for each player</div>
+          <div class="modal-role-item">Deployed to Railway, enabled as a PWA</div>
+          <div class="modal-role-item">Onboarded 13 players — 200+ matches registered in the first two weeks</div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Tech stack</div>
+        <div class="modal-stack"><span>TypeScript</span><span>React</span><span>Vite</span><span>Java 21</span><span>Spring Boot</span><span>PostgreSQL</span><span>Railway</span><span>PWA</span></div>
+      </div>
+      <div class="modal-links">
+        <a href="https://office-ping-pong.up.railway.app" target="_blank" class="modal-link primary">Open app →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Tekont -->
+<div class="modal-backdrop" id="modal-tekont">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('tekont')">✕</button>
+    <div class="modal-inner">
+      <div class="modal-tag">Full-stack · PWA · Bokio integration</div>
+      <h2 class="modal-title">Tekont</h2>
+      <div class="modal-media">
+        <img src="tekont/app-slide.png" alt="Tekont on laptop and mobile">
+      </div>
+      <p class="modal-hook">Real integration. Real companies. Real receipts.</p>
+      <p class="modal-desc">Tekont connects directly to Bokio's accounting API. You photograph a receipt, the app reads it, and it books the transaction automatically — no manual data entry. Currently used by my own AB and actively being adopted by others.</p>
+      <div class="modal-section">
+        <div class="modal-section-label">My role</div>
+        <div class="modal-role-list">
+          <div class="modal-role-item">Identified the gap: Bokio is powerful but receipt handling is slow and manual</div>
+          <div class="modal-role-item">Built a full-stack PWA — React/Vite frontend, Spring Boot/JPA backend</div>
+          <div class="modal-role-item">Integrated directly against Bokio's existing API — a real integration, not a workaround</div>
+          <div class="modal-role-item">Auth via Clerk, deployed on Railway with PostgreSQL</div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Tech stack</div>
+        <div class="modal-stack"><span>React</span><span>TypeScript</span><span>Vite</span><span>Spring Boot</span><span>JPA</span><span>PostgreSQL</span><span>Clerk</span><span>Railway</span><span>PWA</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Ring så tränar vi -->
+<div class="modal-backdrop" id="modal-ring">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('ring')">✕</button>
+    <div class="modal-inner">
+      <div class="modal-tag">Agentic AI · Product ownership · In development</div>
+      <h2 class="modal-title">Ring så tränar vi</h2>
+      <div class="modal-media">
+        <img src="ring-sa-tranar-vi/calling.png" alt="Calling screen with trainer Eva">
+      </div>
+      <p class="modal-hook">I own the product. A team of five builds it.</p>
+      <p class="modal-desc">An AI trainer you actually call. Tell it your goals, your time, your energy level — and it builds a real workout for you on the spot using agentic tool calls. Choose your trainer. Full app launching soon.</p>
+      <div class="modal-section">
+        <div class="modal-section-label">Meet the trainers</div>
+        <div class="trainer-select">
+          <button class="trainer-btn active" onclick="selectTrainer('eva')" id="btn-eva">
+            <img src="ring-sa-tranar-vi/eva-select.png" alt="Eva">
+            <span>Eva</span>
+          </button>
+          <button class="trainer-btn" onclick="selectTrainer('lunken')" id="btn-lunken">
+            <img src="ring-sa-tranar-vi/lunken-select.png" alt="Lunken">
+            <span>Lunken</span>
+          </button>
+        </div>
+        <div class="audio-controls">
+          <button class="play-btn" onclick="toggleAudio()" id="play-btn">▶</button>
+          <span class="audio-label" id="audio-label">Hear Eva's greeting</span>
+        </div>
+        <audio id="trainer-audio" src="ring-sa-tranar-vi/eva.wav"></audio>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">My role</div>
+        <div class="modal-role-list">
+          <div class="modal-role-item">Product owner — I define the roadmap and user experience</div>
+          <div class="modal-role-item">UI/UX lead — designed the visual identity and interaction patterns</div>
+          <div class="modal-role-item">Working in a cross-functional team of five developers</div>
+          <div class="modal-role-item">Agentic AI architecture — the trainer uses tools to fetch exercises, build programs, adapt in real time</div>
+        </div>
+      </div>
+      <div class="modal-section">
+        <div class="modal-section-label">Tech stack</div>
+        <div class="modal-stack"><span>React</span><span>TypeScript</span><span>ElevenLabs</span><span>Agentic flows</span><span>Tool use</span></div>
+      </div>
+      <div class="modal-links">
+        <span class="modal-link" style="opacity:0.4;cursor:default;border-style:dashed">Full launch coming soon</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Stefan Andersson · Stockholm</p>
+  <div style="display:flex;gap:1.5rem">
+    <a href="https://linkedin.com/in/ste-andersson" target="_blank">LinkedIn</a>
+    <a href="https://github.com/ste-andersson" target="_blank">GitHub</a>
+    <a href="mailto:stefan.andersson@sveki.se">stefan.andersson@sveki.se</a>
+  </div>
+</footer>
+
+<script>
+function openModal(id) {
+  document.getElementById('modal-' + id).classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(id) {
+  document.getElementById('modal-' + id).classList.remove('open');
+  document.body.style.overflow = '';
+  stopAudio();
+}
+
+function selectTrainer(t) {
+  document.getElementById('btn-eva').classList.toggle('active', t === 'eva');
+  document.getElementById('btn-lunken').classList.toggle('active', t === 'lunken');
+  const audio = document.getElementById('trainer-audio');
+  stopAudio();
+  audio.src = 'ring-sa-tranar-vi/' + t + '.wav';
+  document.getElementById('audio-label').textContent = "Hear " + (t === 'eva' ? 'Eva' : 'Lunken') + "'s greeting";
+}
+
+function toggleAudio() {
+  const audio = document.getElementById('trainer-audio');
+  const btn = document.getElementById('play-btn');
+  if (audio.paused) { audio.play(); btn.textContent = '■'; }
+  else { audio.pause(); audio.currentTime = 0; btn.textContent = '▶'; }
+}
+
+function stopAudio() {
+  const audio = document.getElementById('trainer-audio');
+  audio.pause();
+  audio.currentTime = 0;
+  const btn = document.getElementById('play-btn');
+  if (btn) btn.textContent = '▶';
+}
+
+document.getElementById('trainer-audio').addEventListener('ended', () => {
+  document.getElementById('play-btn').textContent = '▶';
+});
+
+document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
+  backdrop.addEventListener('click', function(e) {
+    if (e.target === this) closeModal(this.id.replace('modal-', ''));
+  });
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-backdrop.open').forEach(m => {
+      closeModal(m.id.replace('modal-', ''));
+    });
+  }
+});
+</script>
+</body>
+</html>
