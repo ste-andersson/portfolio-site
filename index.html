@@ -138,7 +138,16 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.25re
 .card{cursor:pointer;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,0.08);background:#1e1c1a;transition:transform 0.2s,box-shadow 0.2s}
 .card:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(15,14,13,0.3)}
 .card-num{font-family:'DM Mono',monospace;font-size:0.65rem;color:rgba(255,255,255,0.35);letter-spacing:0.08em;margin-bottom:0.6rem}
-.card-tag{display:inline-block;font-size:0.6rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);padding:0.18rem 0.45rem;border-radius:1px;margin-bottom:1rem}
+.card-band{
+  padding:0.6rem 1.25rem;
+  background:rgba(255,255,255,0.04);
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  font-family:'DM Mono',monospace;
+  font-size:0.65rem;
+  line-height:1.7;
+  color:rgba(255,255,255,0.45);
+}
+.ps-label{font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:0.06em;margin-right:0.4rem}
 .card h3{font-family:'DM Serif Display',serif;font-size:1.75rem;line-height:1.05;letter-spacing:-0.02em;margin-bottom:0.6rem;color:#f5f2ee}
 .card-hook{font-size:0.85rem;font-weight:600;color:var(--accent);margin-bottom:0.6rem;line-height:1.4}
 .card-desc{font-size:0.825rem;color:rgba(255,255,255,0.55);line-height:1.7;flex:1}
@@ -237,8 +246,7 @@ footer a:hover{color:var(--accent)}
 <nav>
   <div class="nav-name">Stefan Andersson</div>
   <div class="nav-links">
-    <a href="#">Work</a>
-    <a href="mailto:stefan.andersson@sveki.se" class="nav-cta">Get in touch</a>
+    <a href="#" onclick="event.preventDefault();openModal('contact')" class="nav-cta">Get in touch</a>
   </div>
 </nav>
 
@@ -268,14 +276,13 @@ footer a:hover{color:var(--accent)}
 
   <!-- CARD 1: VoiceLog -->
   <div class="card" onclick="openModal('voicelog')">
+    <div class="card-band"><span class="ps-label">Problem</span> Late and incorrect reports<br><span class="ps-label">Solution</span> AI assistant</div>
     <div class="card-media">
       <video autoplay loop muted playsinline class="card-video">
         <source src="https://pub-727799f31ba14b49bdda677fcfc7b316.r2.dev/voicelog-mini.mp4" type="video/mp4">
       </video>
     </div>
     <div class="card-body">
-      <div class="card-num">01</div>
-      <div class="card-tag">AI · Client work</div>
       <h3>VoiceLog</h3>
       <p class="card-hook">Spotted the need on-site. Built the MVP solo. Client took it forward.</p>
       <p class="card-desc">An AI voice assistant for electricians. Call the bot, talk about the job, reports fill themselves. Electrician approves. From shadowing an electrician through a full work day to MVP handover to the senior dev team after client paid to take it further.</p>
@@ -287,6 +294,7 @@ footer a:hover{color:var(--accent)}
 
   <!-- CARD 2: Office Ping-Pong -->
   <div class="card" onclick="openModal('pingpong')">
+    <div class="card-band"><span class="ps-label">Problem</span> Keeping track of scores<br><span class="ps-label">Solution</span> Simple tracking app</div>
     <div class="card-media">
       <div class="phone-wrap">
         <div class="phone-frame">
@@ -297,8 +305,6 @@ footer a:hover{color:var(--accent)}
       </div>
     </div>
     <div class="card-body">
-      <div class="card-num">02</div>
-      <div class="card-tag">Full-stack · Deployed</div>
       <h3>Office Ping-Pong</h3>
       <p class="card-hook">200+ registered matches in two weeks. Simple UX led to heavy usage.</p>
       <p class="card-desc">A full office ping-pong league with AI-generated character portraits for every player. TypeScript frontend, Spring Boot backend, PostgreSQL. Deployed and organically adopted.</p>
@@ -310,14 +316,13 @@ footer a:hover{color:var(--accent)}
 
   <!-- CARD 3: Tekont -->
   <div class="card" onclick="openModal('tekont')">
+    <div class="card-band"><span class="ps-label">Problem</span> Handling receipts takes too long<br><span class="ps-label">Solution</span> Automatic accounting</div>
     <div class="card-media">
       <video autoplay loop muted playsinline class="card-video">
         <source src="https://pub-727799f31ba14b49bdda677fcfc7b316.r2.dev/comparison-mini.mp4" type="video/mp4">
       </video>
     </div>
     <div class="card-body">
-      <div class="card-num">03</div>
-      <div class="card-tag">Full-stack · PWA · In use</div>
       <h3>Tekont</h3>
       <p class="card-hook">Real integration. Real companies. Real receipts.</p>
       <p class="card-desc">Photo a receipt, review the AI-suggested booking, approve. Integrated directly with Bokio's API. Used by real companies today.</p>
@@ -329,14 +334,13 @@ footer a:hover{color:var(--accent)}
 
   <!-- CARD 4: Ring så tränar vi -->
   <div class="card" onclick="openModal('ring')">
+    <div class="card-band"><span class="ps-label">Problem</span> Starting a workout is hard<br><span class="ps-label">Solution</span> Agentic personal trainer</div>
     <div class="card-media">
       <video autoplay loop muted playsinline class="card-video">
         <source src="https://pub-727799f31ba14b49bdda677fcfc7b316.r2.dev/shoulder_raises4.mp4" type="video/mp4">
       </video>
     </div>
     <div class="card-body">
-      <div class="card-num">04</div>
-      <div class="card-tag">Agentic AI · Product owner</div>
       <h3>Ring så tränar vi</h3>
       <p class="card-hook">Made working out easier. With agentic workflows.</p>
       <p class="card-desc">Call an AI trainer and get a real workout on the spot. Receive instructions, coaching and ask questions. Agentic flows with tool use under the hood. I'm product owner and UI/UX lead in a team of five.</p>
@@ -376,6 +380,9 @@ footer a:hover{color:var(--accent)}
       <div class="modal-section">
         <div class="modal-section-label">Tech stack</div>
         <div class="modal-stack"><span>Python</span><span>ElevenLabs</span><span>OpenAI</span><span>Gemini</span><span>TypeScript</span><span>Tailwind</span></div>
+      </div>
+      <div class="modal-links">
+        <a href="https://voice-log-revolution.lovable.app/" target="_blank" class="modal-link primary">View project site →</a>
       </div>
     </div>
   </div>
@@ -417,7 +424,7 @@ footer a:hover{color:var(--accent)}
         <div class="modal-stack"><span>TypeScript</span><span>React</span><span>Vite</span><span>Java 21</span><span>Spring Boot</span><span>PostgreSQL</span><span>Railway</span><span>PWA</span></div>
       </div>
       <div class="modal-links">
-        <a href="https://office-ping-pong.up.railway.app" target="_blank" class="modal-link primary">Open app →</a>
+        <a href="https://officepingpong.se" target="_blank" class="modal-link primary">View project site →</a>
       </div>
     </div>
   </div>
@@ -453,6 +460,9 @@ footer a:hover{color:var(--accent)}
       <div class="modal-section">
         <div class="modal-section-label">Tech stack</div>
         <div class="modal-stack"><span>React</span><span>TypeScript</span><span>Vite</span><span>Spring Boot</span><span>JPA</span><span>PostgreSQL</span><span>Clerk</span><span>Railway</span><span>PWA</span><span>Postmark</span></div>
+      </div>
+      <div class="modal-links">
+        <a href="https://tekont.se" target="_blank" class="modal-link primary">View project site →</a>
       </div>
     </div>
   </div>
@@ -531,6 +541,33 @@ footer a:hover{color:var(--accent)}
   </div>
 </div>
 
+<!-- MODAL: Contact -->
+<div class="modal-backdrop" id="modal-contact">
+  <div class="modal" style="max-width:520px">
+    <button class="modal-close" onclick="closeModal('contact')">✕</button>
+    <div class="modal-inner">
+      <div class="modal-tag">Contact</div>
+      <h2 class="modal-title">Get in touch</h2>
+      <form id="contact-form" action="https://formspree.io/f/mlgzoqqa" method="POST" style="display:flex;flex-direction:column;gap:1rem">
+        <div>
+          <label style="font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:0.4rem">Name</label>
+          <input type="text" name="name" required style="width:100%;padding:0.65rem 0.75rem;border:1px solid var(--border);background:var(--paper2);font-family:'Syne',sans-serif;font-size:0.9rem;color:var(--ink);outline:none">
+        </div>
+        <div>
+          <label style="font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:0.4rem">Email</label>
+          <input type="email" name="email" required style="width:100%;padding:0.65rem 0.75rem;border:1px solid var(--border);background:var(--paper2);font-family:'Syne',sans-serif;font-size:0.9rem;color:var(--ink);outline:none">
+        </div>
+        <div>
+          <label style="font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink3);display:block;margin-bottom:0.4rem">Message</label>
+          <textarea name="message" required rows="5" style="width:100%;padding:0.65rem 0.75rem;border:1px solid var(--border);background:var(--paper2);font-family:'Syne',sans-serif;font-size:0.9rem;color:var(--ink);outline:none;resize:vertical"></textarea>
+        </div>
+        <button type="submit" style="background:var(--ink);color:var(--paper);border:none;padding:0.75rem 1.5rem;font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;align-self:flex-start;transition:background 0.15s">Send</button>
+      </form>
+      <p id="contact-success" style="display:none;margin-top:1rem;font-size:0.9rem;color:var(--ink2)">Thanks, I'll be in touch soon.</p>
+    </div>
+  </div>
+</div>
+
 <footer>
   <p>Stefan Andersson · Stockholm</p>
   <div style="display:flex;gap:1.5rem">
@@ -541,14 +578,14 @@ footer a:hover{color:var(--accent)}
 </footer>
 
 <script>
+// Hero video
 function heroVid() {
   return window.innerWidth <= 768
     ? document.getElementById('hero-landscape')
     : document.getElementById('hero-portrait');
 }
 function heroUnmute() {
-  const v = heroVid();
-  v.muted = false;
+  heroVid().muted = false;
   document.getElementById('hero-unmute').classList.add('hidden');
 }
 function heroReplay() {
@@ -567,62 +604,21 @@ function heroReplay() {
   });
 });
 
+// Modals
 function openModal(id) {
   document.getElementById('modal-' + id).classList.add('open');
   document.body.style.overflow = 'hidden';
 }
-
 function closeModal(id) {
   document.getElementById('modal-' + id).classList.remove('open');
   document.body.style.overflow = '';
   stopAudio();
 }
-
-function playTrainer(t) {
-  const audio = document.getElementById('trainer-audio');
-  const isPlaying = !audio.paused;
-  const isSame = audio.src.includes(t + '.wav');
-
-  audio.pause();
-  audio.currentTime = 0;
-  document.getElementById('btn-eva').querySelector('span').textContent = '▶ Eva';
-  document.getElementById('btn-lunken').querySelector('span').textContent = '▶ Lunken';
-  document.getElementById('btn-eva').classList.toggle('active', t === 'eva');
-  document.getElementById('btn-lunken').classList.toggle('active', t === 'lunken');
-
-  if (isPlaying && isSame) return; // toggle off
-
-  audio.src = 'ring-sa-tranar-vi/' + t + '.wav';
-  audio.play();
-  document.getElementById('btn-' + t).querySelector('span').textContent = '■ ' + (t === 'eva' ? 'Eva' : 'Lunken');
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  const audio = document.getElementById('trainer-audio');
-  if (audio) audio.addEventListener('ended', () => {
-    document.getElementById('btn-eva').querySelector('span').textContent = '▶ Eva';
-    document.getElementById('btn-lunken').querySelector('span').textContent = '▶ Lunken';
-  });
-});
-
-function stopAudio() {
-  const audio = document.getElementById('trainer-audio');
-  audio.pause();
-  audio.currentTime = 0;
-  const btn = document.getElementById('play-btn');
-  if (btn) btn.textContent = '▶';
-}
-
-document.getElementById('trainer-audio').addEventListener('ended', () => {
-  document.getElementById('play-btn').textContent = '▶';
-});
-
 document.querySelectorAll('.modal-backdrop').forEach(backdrop => {
   backdrop.addEventListener('click', function(e) {
     if (e.target === this) closeModal(this.id.replace('modal-', ''));
   });
 });
-
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     document.querySelectorAll('.modal-backdrop.open').forEach(m => {
@@ -630,6 +626,60 @@ document.addEventListener('keydown', e => {
     });
   }
 });
+
+// Trainer audio
+function stopAudio() {
+  const audio = document.getElementById('trainer-audio');
+  if (!audio) return;
+  audio.pause();
+  audio.currentTime = 0;
+  const eva = document.getElementById('btn-eva');
+  const lunken = document.getElementById('btn-lunken');
+  if (eva) eva.querySelector('span').textContent = '▶ Eva';
+  if (lunken) lunken.querySelector('span').textContent = '▶ Lunken';
+}
+function playTrainer(t) {
+  const audio = document.getElementById('trainer-audio');
+  const isPlaying = !audio.paused;
+  const isSame = audio.src.includes(t + '.wav');
+  stopAudio();
+  document.getElementById('btn-eva').classList.toggle('active', t === 'eva');
+  document.getElementById('btn-lunken').classList.toggle('active', t === 'lunken');
+  if (isPlaying && isSame) return;
+  audio.src = 'ring-sa-tranar-vi/' + t + '.wav';
+  audio.play();
+  document.getElementById('btn-' + t).querySelector('span').textContent = '■ ' + (t === 'eva' ? 'Eva' : 'Lunken');
+}
+const trainerAudio = document.getElementById('trainer-audio');
+if (trainerAudio) trainerAudio.addEventListener('ended', stopAudio);
+
+// Contact form
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    btn.textContent = 'Sending...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        this.style.display = 'none';
+        document.getElementById('contact-success').style.display = 'block';
+      } else {
+        btn.textContent = 'Try again';
+        btn.disabled = false;
+      }
+    } catch {
+      btn.textContent = 'Try again';
+      btn.disabled = false;
+    }
+  });
+}
 </script>
 </body>
 </html>
