@@ -338,8 +338,8 @@ footer a:hover{color:var(--accent)}
       <div class="card-num">04</div>
       <div class="card-tag">Agentic AI · Product owner</div>
       <h3>Ring så tränar vi</h3>
-      <p class="card-hook">I own the product. A team of five builds it.</p>
-      <p class="card-desc">Call an AI trainer, talk about your goals, get a real workout on the spot. Agentic flows with tool use under the hood. I'm product owner and UI/UX lead.</p>
+      <p class="card-hook">Made working out easier. With agentic workflows.</p>
+      <p class="card-desc">Call an AI trainer and get a real workout on the spot. Receive instructions, coaching and ask questions. Agentic flows with tool use under the hood. I'm product owner and UI/UX lead in a team of five.</p>
       <div class="card-footer">
         <span class="card-cta">View project</span>
       </div>
@@ -388,11 +388,21 @@ footer a:hover{color:var(--accent)}
     <div class="modal-inner">
       <div class="modal-tag">Full-stack · Deployed · TypeScript · Spring Boot</div>
       <h2 class="modal-title">Office Ping-Pong</h2>
-      <div class="modal-media" style="background:var(--paper);display:flex;justify-content:center;align-items:flex-start">
-        <img src="office-ping-pong/leaderboard.png" alt="Leaderboard screenshot" style="width:auto;max-width:100%;max-height:480px;height:auto;display:block">
+      <div class="modal-media">
+        <video autoplay loop muted playsinline style="width:100%;height:auto;display:block">
+          <source src="https://pub-727799f31ba14b49bdda677fcfc7b316.r2.dev/app2.mp4" type="video/mp4">
+        </video>
       </div>
       <p class="modal-hook">200+ registered matches in two weeks. Simple UX led to heavy usage.</p>
       <p class="modal-desc">A full office ping-pong league for SALT. Every player gets an AI-generated character portrait. Matches, leaderboard, and stats. All live on Railway. The real measure: colleagues started using it on their own and kept coming back.</p>
+      <div class="modal-section">
+        <div class="modal-section-label">Screenshots</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem">
+          <img src="office-ping-pong/leaderboard.png" alt="Leaderboard" style="width:100%;height:auto;display:block;border:1px solid var(--border)">
+          <img src="office-ping-pong/set-scores.png" alt="Set scores" style="width:100%;height:auto;display:block;border:1px solid var(--border)">
+          <img src="office-ping-pong/pick-player.png" alt="Pick player" style="width:100%;height:auto;display:block;border:1px solid var(--border)">
+        </div>
+      </div>
       <div class="modal-section">
         <div class="modal-section-label">My role</div>
         <div class="modal-role-list">
@@ -458,23 +468,19 @@ footer a:hover{color:var(--accent)}
       <div class="modal-media">
         <img src="ring-sa-tranar-vi/calling.png" alt="Calling screen with trainer Eva">
       </div>
-      <p class="modal-hook">I own the product. A team of five builds it.</p>
-      <p class="modal-desc">An AI trainer you actually call. Tell it your goals, your time, your energy level, and it builds a real workout for you on the spot using agentic tool calls. Choose your trainer. Full app launching soon.</p>
+      <p class="modal-hook">Made working out easier. With agentic workflows.</p>
+      <p class="modal-desc">An AI trainer you actually call. Simpler than dealing with menus with endless lists of exercises and more fun than doing the usual routine. Choose your trainer out of a cast of characters with distinct personalities.</p>
       <div class="modal-section">
-        <div class="modal-section-label">Meet the trainers</div>
+        <div class="modal-section-label">Voice samples</div>
         <div class="trainer-select">
-          <button class="trainer-btn active" onclick="selectTrainer('eva')" id="btn-eva">
+          <button class="trainer-btn active" onclick="playTrainer('eva')" id="btn-eva">
             <img src="ring-sa-tranar-vi/eva-select.png" alt="Eva">
-            <span>Eva</span>
+            <span>▶ Eva</span>
           </button>
-          <button class="trainer-btn" onclick="selectTrainer('lunken')" id="btn-lunken">
+          <button class="trainer-btn" onclick="playTrainer('lunken')" id="btn-lunken">
             <img src="ring-sa-tranar-vi/lunken-select.png" alt="Lunken">
-            <span>Lunken</span>
+            <span>▶ Lunken</span>
           </button>
-        </div>
-        <div class="audio-controls">
-          <button class="play-btn" onclick="toggleAudio()" id="play-btn">▶</button>
-          <span class="audio-label" id="audio-label">Hear Eva's greeting</span>
         </div>
         <audio id="trainer-audio" src="ring-sa-tranar-vi/eva.wav"></audio>
       </div>
@@ -488,11 +494,38 @@ footer a:hover{color:var(--accent)}
         </div>
       </div>
       <div class="modal-section">
-        <div class="modal-section-label">Tech stack</div>
-        <div class="modal-stack"><span>React</span><span>TypeScript</span><span>ElevenLabs</span><span>Agentic flows</span><span>Tool use</span></div>
+        <div class="modal-section-label">The team</div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1rem">
+          <div style="text-align:center">
+            <img src="ring-sa-tranar-vi/stefan.png" alt="Stefan" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;border:1px solid var(--border);filter:grayscale(100%)">
+            <div style="font-size:0.7rem;font-weight:600;margin-top:0.5rem;color:var(--ink)">Stefan Andersson</div>
+            <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink3);margin-top:0.2rem;line-height:1.4">Product owner<br>UX/UI · AI</div>
+          </div>
+          <div style="text-align:center">
+            <img src="ring-sa-tranar-vi/sebastian.png" alt="Sebastian" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;border:1px solid var(--border);filter:grayscale(100%)">
+            <div style="font-size:0.7rem;font-weight:600;margin-top:0.5rem;color:var(--ink)">Sebastian Thunberg</div>
+            <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink3);margin-top:0.2rem;line-height:1.4">Database<br>CI/CD · Frontend</div>
+          </div>
+          <div style="text-align:center">
+            <img src="ring-sa-tranar-vi/shirwac.png" alt="Shirwac" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;border:1px solid var(--border);filter:grayscale(100%)">
+            <div style="font-size:0.7rem;font-weight:600;margin-top:0.5rem;color:var(--ink)">Shirwac Abib</div>
+            <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink3);margin-top:0.2rem;line-height:1.4">UX/UI<br>Frontend</div>
+          </div>
+          <div style="text-align:center">
+            <img src="ring-sa-tranar-vi/tehreem.png" alt="Tehreem" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;border:1px solid var(--border);filter:grayscale(100%)">
+            <div style="font-size:0.7rem;font-weight:600;margin-top:0.5rem;color:var(--ink)">Tehreem Asif</div>
+            <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink3);margin-top:0.2rem;line-height:1.4">Project manager<br>Backend</div>
+          </div>
+          <div style="text-align:center">
+            <img src="ring-sa-tranar-vi/venujan.png" alt="Venu" style="width:100%;aspect-ratio:1;object-fit:cover;display:block;border:1px solid var(--border);filter:grayscale(100%)">
+            <div style="font-size:0.7rem;font-weight:600;margin-top:0.5rem;color:var(--ink)">Venujan Nagendirakumar</div>
+            <div style="font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--ink3);margin-top:0.2rem;line-height:1.4">CI/CD<br>Backend</div>
+          </div>
+        </div>
       </div>
-      <div class="modal-links">
-        <span class="modal-link" style="opacity:0.4;cursor:default;border-style:dashed">Full launch coming soon</span>
+      <div class="modal-section">
+        <div class="modal-section-label">Tech stack</div>
+        <div class="modal-stack"><span>Java</span><span>Spring Boot</span><span>React</span><span>TypeScript</span><span>Gemini 2.0 Flash Live</span><span>OpenAI</span><span>Vidu</span><span>Clerk</span></div>
       </div>
     </div>
   </div>
@@ -545,21 +578,32 @@ function closeModal(id) {
   stopAudio();
 }
 
-function selectTrainer(t) {
+function playTrainer(t) {
+  const audio = document.getElementById('trainer-audio');
+  const isPlaying = !audio.paused;
+  const isSame = audio.src.includes(t + '.wav');
+
+  audio.pause();
+  audio.currentTime = 0;
+  document.getElementById('btn-eva').querySelector('span').textContent = '▶ Eva';
+  document.getElementById('btn-lunken').querySelector('span').textContent = '▶ Lunken';
   document.getElementById('btn-eva').classList.toggle('active', t === 'eva');
   document.getElementById('btn-lunken').classList.toggle('active', t === 'lunken');
-  const audio = document.getElementById('trainer-audio');
-  stopAudio();
+
+  if (isPlaying && isSame) return; // toggle off
+
   audio.src = 'ring-sa-tranar-vi/' + t + '.wav';
-  document.getElementById('audio-label').textContent = "Hear " + (t === 'eva' ? 'Eva' : 'Lunken') + "'s greeting";
+  audio.play();
+  document.getElementById('btn-' + t).querySelector('span').textContent = '■ ' + (t === 'eva' ? 'Eva' : 'Lunken');
 }
 
-function toggleAudio() {
+document.addEventListener('DOMContentLoaded', () => {
   const audio = document.getElementById('trainer-audio');
-  const btn = document.getElementById('play-btn');
-  if (audio.paused) { audio.play(); btn.textContent = '■'; }
-  else { audio.pause(); audio.currentTime = 0; btn.textContent = '▶'; }
-}
+  if (audio) audio.addEventListener('ended', () => {
+    document.getElementById('btn-eva').querySelector('span').textContent = '▶ Eva';
+    document.getElementById('btn-lunken').querySelector('span').textContent = '▶ Lunken';
+  });
+});
 
 function stopAudio() {
   const audio = document.getElementById('trainer-audio');
