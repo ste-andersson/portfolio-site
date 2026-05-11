@@ -485,12 +485,20 @@ footer a:hover{color:var(--accent)}
         <div class="modal-section-label">Voice samples</div>
         <div class="trainer-select">
           <button class="trainer-btn active" onclick="playTrainer('eva')" id="btn-eva">
-            <img src="ring-sa-tranar-vi/eva-select.png" alt="Eva">
+            <img src="ring-sa-tranar-vi/eva-select.png" alt="Eva" style="width:60px;height:auto;object-fit:contain">
             <span>▶ Eva</span>
           </button>
           <button class="trainer-btn" onclick="playTrainer('lunken')" id="btn-lunken">
-            <img src="ring-sa-tranar-vi/lunken-select.png" alt="Lunken">
+            <img src="ring-sa-tranar-vi/lunken-select.png" alt="Lunken" style="width:60px;height:auto;object-fit:contain">
             <span>▶ Lunken</span>
+          </button>
+          <button class="trainer-btn" onclick="playTrainer('jerry')" id="btn-jerry">
+            <img src="ring-sa-tranar-vi/jerry-select.png" alt="Jerry" style="width:60px;height:auto;object-fit:contain">
+            <span>▶ Jerry</span>
+          </button>
+          <button class="trainer-btn" onclick="playTrainer('elizabeth')" id="btn-elizabeth">
+            <img src="ring-sa-tranar-vi/elizabeth-select.png" alt="Elizabeth" style="width:60px;height:auto;object-fit:contain">
+            <span>▶ Elizabeth</span>
           </button>
         </div>
         <audio id="trainer-audio" src="ring-sa-tranar-vi/eva.wav"></audio>
@@ -637,22 +645,27 @@ function stopAudio() {
   if (!audio) return;
   audio.pause();
   audio.currentTime = 0;
-  const eva = document.getElementById('btn-eva');
-  const lunken = document.getElementById('btn-lunken');
-  if (eva) eva.querySelector('span').textContent = '▶ Eva';
-  if (lunken) lunken.querySelector('span').textContent = '▶ Lunken';
+  ['eva','lunken','jerry','elizabeth'].forEach(name => {
+    const btn = document.getElementById('btn-' + name);
+    if (btn) btn.querySelector('span').textContent = '▶ ' + name.charAt(0).toUpperCase() + name.slice(1);
+  });
 }
 function playTrainer(t) {
   const audio = document.getElementById('trainer-audio');
   const isPlaying = !audio.paused;
   const isSame = audio.src.includes(t + '.wav');
   stopAudio();
-  document.getElementById('btn-eva').classList.toggle('active', t === 'eva');
-  document.getElementById('btn-lunken').classList.toggle('active', t === 'lunken');
+  ['eva','lunken','jerry','elizabeth'].forEach(name => {
+    const btn = document.getElementById('btn-' + name);
+    if (btn) {
+      btn.classList.toggle('active', name === t);
+      btn.querySelector('span').textContent = '▶ ' + name.charAt(0).toUpperCase() + name.slice(1);
+    }
+  });
   if (isPlaying && isSame) return;
   audio.src = 'ring-sa-tranar-vi/' + t + '.wav';
   audio.play();
-  document.getElementById('btn-' + t).querySelector('span').textContent = '■ ' + (t === 'eva' ? 'Eva' : 'Lunken');
+  document.getElementById('btn-' + t).querySelector('span').textContent = '■ ' + t.charAt(0).toUpperCase() + t.slice(1);
 }
 const trainerAudio = document.getElementById('trainer-audio');
 if (trainerAudio) trainerAudio.addEventListener('ended', stopAudio);
